@@ -12,6 +12,25 @@
 #include "strptime.h"
 #endif // WIN32
 
+static char* Q_strcpy(char* to, char* from)
+{
+	int i;
+
+	if (to < from) {
+		for (i = 0; from[i] != 0; i++) {
+			to[i] = from[i];
+		}
+		to[i] = from[i];
+	}
+	else {
+		for (i = strlen(from); i >= 0; i--) {
+			to[i] = from[i];
+		}
+	}
+
+	return to;
+}
+
 // ========================================================================================
 // HELPER FUNCTITONS
 // ========================================================================================
@@ -104,7 +123,7 @@ void Info_RemoveKey(char *s, char *key)
 
 		if (!strcmp(key, pkey))
 		{
-			strcpy(start, s);	// Remove this part.
+			Q_strcpy(start, s);	// Remove this part.
 			return;
 		}
 
